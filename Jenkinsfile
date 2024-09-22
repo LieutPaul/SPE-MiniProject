@@ -1,13 +1,14 @@
 pipeline{
-    environment{
+    environment {
         DOCKERHUB_CRED = credentials("dockerhub_id")
+        MAVEN_HOME = tool name: 'Maven', type: 'Maven'
     }
     agent any
     stages{
         
         stage("Stage 1 : Maven Build"){
             steps{
-                sh 'mvn clean install'
+                sh '${MAVEN_HOME}/bin/mvn clean install'
             }
         }
         
