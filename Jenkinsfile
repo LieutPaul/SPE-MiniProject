@@ -4,32 +4,27 @@ pipeline{
     }
     agent any
     stages{
-        stage("Stage 1 : Git Clone"){
-            steps{
-                git "https://github.com/LieutPaul/SPE-MiniProject"
-            }
-        }
         
-        stage("Stage 2 : Maven Build"){
+        stage("Stage 1 : Maven Build"){
             steps{
                 sh 'mvn clean install'
             }
         }
         
-        stage("Stage 3 : Build Docker Image"){
+        stage("Stage 2 : Build Docker Image"){
             steps{
                 sh "docker build -t vikaskaly/SPE-MiniProject-Calculator:latest ."
             }
         }
         
-        stage("Stage 4 : Push Docker Image to Dockerhub"){
+        stage("Stage 3 : Push Docker Image to Dockerhub"){
             steps{
                 sh 'echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin'
                 sh "docker push vikaskaly/SPE-MiniProject-Calculator:latest"
             }
         }
         
-        stage("Stage 5 : Clean Unwanted Docker Images"){
+        stage("Stage 4 : Clean Unwanted Docker Images"){
             steps{
                 // sh "docker ps -a -q | xargs docker stop | xargs docker rm"
                 // sh "docker rm -f ${docker ps -a -q}"
