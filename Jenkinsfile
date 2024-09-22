@@ -1,14 +1,13 @@
 pipeline{
-    environment {
+    environment{
         DOCKERHUB_CRED = credentials("dockerhub_id")
-        MAVEN_HOME = tool name: 'Maven', type: 'Maven'
     }
     agent any
     stages{
         
         stage("Stage 1 : Maven Build"){
             steps{
-                sh '${MAVEN_HOME}/bin/mvn clean install'
+                sh '/opt/homebrew/bin/mvn clean install'
             }
         }
         
@@ -27,6 +26,8 @@ pipeline{
         
         stage("Stage 4 : Clean Unwanted Docker Images"){
             steps{
+                // sh "docker ps -a -q | xargs docker stop | xargs docker rm"
+                // sh "docker rm -f ${docker ps -a -q}"
                 sh "docker container prune -f"
                 sh "docker image prune -a -f"
             }
