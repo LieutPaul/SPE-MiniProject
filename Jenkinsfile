@@ -47,7 +47,6 @@ pipeline{
         //         playbook: 'Deploy-Calculator.yml'
         //     }
         // }
-        //
 
     }
 }
