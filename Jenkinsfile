@@ -13,14 +13,14 @@ pipeline{
         
         stage("Stage 2 : Build Docker Image"){
             steps{
-                sh "/usr/local/bin/docker build -t vikaskaly/SPE-MiniProject-Calculator:latest ."
+                sh "/usr/local/bin/docker build -t vikaskaly/spe-miniproject-calculator:latest ."
             }
         }
         
         stage("Stage 3 : Push Docker Image to Dockerhub"){
             steps{
                 sh 'echo $DOCKERHUB_CRED_PSW | /usr/local/bin/docker login -u $DOCKERHUB_CRED_USR --password-stdin'
-                sh "/usr/local/bin/docker push vikaskaly/SPE-MiniProject-Calculator:latest"
+                sh "/usr/local/bin/docker push vikaskaly/spe-miniproject-calculator:latest"
             }
         }
         
