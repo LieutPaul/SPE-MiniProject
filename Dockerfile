@@ -1,4 +1,4 @@
-FROM openjdk:15
+FROM openjdk:17
 
 COPY ./target/SPE-Mini-Project-1.0-SNAPSHOT.jar ./
 
