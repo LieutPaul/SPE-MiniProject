@@ -34,12 +34,7 @@ pipeline{
         
         stage('Stage 5: Ansible Deployment') {
             steps {
-                // ansiblePlaybook colorized: true,
-                // credentialsId: 'localhost',
-                // installation: 'Ansible',
-                // inventory: 'inventory',
-                // playbook: 'deploy-calculator.yml'
-                sh "/opt/homebrew/bin/ansible-playbook -i inventory deploy-calculator.yml"
+                sh "ansible-playbook -i inventory deploy-calculator.yml"
             }
         }
         

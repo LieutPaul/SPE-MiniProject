@@ -1,15 +1,29 @@
 ---
-- name: Pull Docker Image of Calculator
+- name: Deploy Calculator Application
   hosts: all
 
+  vars:
+    ansible_python_interpreter: /Users/vikaskaly/base/bin/python
+
   tasks:
-    - name: Start Docker Service
-      service:
-        name: docker
+    
+    - name: Pull Docker Image of Calculator
+      docker_image:
+        name: vikaskaly/spe-miniproject-calculator
+        tag: latest
+        source: pull
+        state: present
+
+    - name: Stop any running Calculator container
+      docker_container:
+        name: Calculator
+        state: absent
+        force_kill: yes
+
+    - name: Run the Calculator container
+      docker_container:
+        name: Calculator
+        image: vikaskaly/spe-miniproject-calculator:latest
         state: started
-
-    - name: Pull Image
-      shell: docker pull vikaskaly/spe-miniproject-calculator:latest
-
-    - name: Run the container
-      shell: docker create -it --name Calculator vikaskaly/calculator
+        ports:
+          - "8080:8080"  # Assuming the container exposes port 8080
