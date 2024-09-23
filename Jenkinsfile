@@ -32,7 +32,7 @@ pipeline{
             }
         }
         
-        stage('Stage 6 : Ansible Deployment') {
+        stage('Stage 5: Ansible Deployment') {
             steps {
                 ansiblePlaybook colorized: true,
                 credentialsId: 'localhost',
