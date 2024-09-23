@@ -1,0 +1,15 @@
+---
+- name: Pull Docker Image of Calculator
+  hosts: all
+
+  tasks:
+    - name: Start Docker Service
+      service:
+        name: docker
+        state: started
+
+    - name: Pull Image
+      shell: docker pull vikaskaly/spe-miniproject-calculator:latest
+
+    - name: Run the container
+      shell: docker create -it --name Calculator vikaskaly/calculator

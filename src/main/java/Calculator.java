@@ -52,30 +52,32 @@ public class Calculator {
                 System.out.print("Please Enter the number to find the square root of: ");
                 double num1 = sc.nextDouble();
                 double result = square_root(num1);
-                System.out.println("The Final Result is : " + result);
+                System.out.println("The answer is: " + result);
             }else if(op == 2){
                 System.out.print("Please Enter the number to find the factorial of: ");
                 Integer num1 = sc.nextInt();
                 double result = factorial(num1);
-                System.out.println("The Final Result is : " + result);
+                System.out.println("The answer is: " + result);
             }else if(op == 3){
                 System.out.print("Please Enter the number to find the natural log of: ");
                 double num1 = sc.nextDouble();
                 double result = natural_log(num1);
-                System.out.println("The Final Result is : " + result);
+                System.out.println("The answer is: " + result);
             }else if(op == 4){
                 System.out.print("Please Enter the base: ");
                 double base = sc.nextDouble();
                 System.out.print("Please Enter the exponent: ");
                 double exponent = sc.nextDouble();
                 double result = exponent(base,exponent);
-                System.out.println("The Final Result is: " + result);
+                System.out.println("The answer is: " + result);
             }else if(op == 5){
                 break;
             }else{
                 System.out.println("Please enter a valid option.");
             }
         }
+
+        sc.close();
 
     }
 
