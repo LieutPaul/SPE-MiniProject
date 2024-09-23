@@ -6,24 +6,9 @@
     ansible_python_interpreter: /Users/vikaskaly/base/bin/python
 
   tasks:
-    
-    - name: Pull Docker Image of Calculator
-      docker_image:
-        name: vikaskaly/spe-miniproject-calculator
-        tag: latest
-        source: pull
-        state: present
+  
+    - name: Pull Image
+      shell: docker pull vikaskaly/spe-miniproject-calculator:latest
 
-    - name: Stop any running Calculator container
-      docker_container:
-        name: Calculator
-        state: absent
-        force_kill: yes
-
-    - name: Run the Calculator container
-      docker_container:
-        name: Calculator
-        image: vikaskaly/spe-miniproject-calculator:latest
-        state: started
-        ports:
-          - "8080:8080"  # Assuming the container exposes port 8080
+    - name: Run the container
+      shell: docker create -it --name Calculator vikaskaly/spe-miniproject-calculator
