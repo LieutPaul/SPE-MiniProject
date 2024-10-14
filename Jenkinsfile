@@ -44,4 +44,3 @@ pipeline{
 
 // Docker: /usr/local/bin/docker
 // Maven: /opt/homebrew/bin/mvn
-// 
